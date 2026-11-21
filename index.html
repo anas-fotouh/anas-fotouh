@@ -3,1573 +3,1068 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>أنس | الملف الشخصي والأعمال</title>
-  
-  <!-- استدعاء خط عربي عصري نظيف بدون كشيدة -->
+  <title>أنس أبوالفتوح | الهوية البصرية والتسويق</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
     :root {
-      --accent: #007AFF;
-      --bg-1: #0f172a;
-      --bg-2: #1e1b4b;
-      --bg-3: #311042;
-      --glass-bg: rgba(255, 255, 255, 0.12);
-      --glass-border: rgba(255, 255, 255, 0.22);
-      --glass-hover: rgba(255, 255, 255, 0.18);
-      --glass-blur: 24px;
+      --bg-start: #0f172a;
+      --bg-mid: #1e1b4b;
+      --bg-end: #090d16;
+      --accent: #38bdf8;
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --glass-hover: rgba(255, 255, 255, 0.14);
       --text-main: #ffffff;
       --text-muted: rgba(255, 255, 255, 0.72);
-      --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      --card-radius: 28px;
     }
 
-    body {
-      font-family: 'IBM Plex Sans Arabic', sans-serif;
-      color: var(--text-main);
-      background-color: var(--bg-1);
-      min-height: 100dvh;
-      overflow-x: hidden;
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-      transition: background-color 0.5s ease, color 0.4s ease;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* خلفية متدرجة ناعمة متحركة بأسلوب Apple */
-    .ambient-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-      background: radial-gradient(circle at 20% 20%, var(--bg-2), transparent 55%),
-                  radial-gradient(circle at 80% 80%, var(--bg-3), transparent 55%),
-                  var(--bg-1);
-      transition: background 0.6s ease;
+    body {
+      font-family: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 15% 20%, var(--bg-mid), transparent 50%),
+                  radial-gradient(circle at 85% 80%, var(--bg-start), transparent 55%),
+                  var(--bg-end);
+      background-color: var(--bg-end);
+      color: var(--text-main);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(20px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .ambient-orb {
-      position: absolute;
+    /* Ambient Apple Glass Orbs */
+    .orb {
+      position: fixed;
       border-radius: 50%;
       filter: blur(80px);
-      opacity: 0.55;
-      animation: floatOrb 18s ease-in-out infinite alternate;
+      z-index: 0;
       pointer-events: none;
+      opacity: 0.45;
     }
-
     .orb-1 {
-      width: 340px;
-      height: 340px;
-      top: -80px;
-      right: -60px;
+      width: 280px;
+      height: 280px;
       background: var(--accent);
+      top: -60px;
+      right: -60px;
     }
-
     .orb-2 {
-      width: 300px;
-      height: 300px;
-      bottom: -60px;
-      left: -60px;
-      background: var(--bg-3);
-      animation-delay: -6s;
+      width: 320px;
+      height: 320px;
+      background: #6366f1;
+      bottom: -80px;
+      left: -80px;
     }
 
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(30px, 40px) scale(1.12); }
-    }
-
-    /* بطاقات الزجاج الشفاف Apple Glassmorphism */
-    .apple-glass {
+    /* Main Glass Container */
+    .container {
+      width: 100%;
+      max-width: 440px;
       background: var(--glass-bg);
-      backdrop-filter: blur(var(--glass-blur));
-      -webkit-backdrop-filter: blur(var(--glass-blur));
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
       border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-glass);
-      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-                  background-color 0.25s ease,
-                  border-color 0.25s ease,
-                  box-shadow 0.25s ease;
-    }
-
-    .apple-glass-interactive:hover {
-      background: var(--glass-hover);
-      transform: translateY(-2px);
-    }
-
-    @media (hover: none) {
-      .apple-glass-interactive:hover {
-        background: var(--glass-bg);
-        transform: none;
-      }
-    }
-
-    .apple-glass-interactive:active {
-      transform: scale(0.96);
-    }
-
-    /* إطار الصورة الشخصية الدائري */
-    .avatar-ring {
-      background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.08));
-      padding: 3px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
-    }
-
-    /* سلايدر الأعمال العمودي */
-    .portfolio-track {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      padding: 4px 2px 10px 2px;
-    }
-
-    .portfolio-track::-webkit-scrollbar {
-      display: none;
-    }
-
-    .portfolio-slide {
-      flex: 0 0 68%;
-      aspect-ratio: 9 / 15;
-      scroll-snap-align: center;
+      border-radius: var(--card-radius);
+      padding: 28px 20px 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
       position: relative;
-      border-radius: 22px;
-      overflow: hidden;
+      z-index: 1;
+      text-align: center;
+    }
+
+    /* Profile Avatar */
+    .avatar-wrap {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
       cursor: pointer;
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      user-select: none;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     }
-
-    @media (min-width: 420px) {
-      .portfolio-slide {
-        flex: 0 0 56%;
-      }
+    .avatar-wrap:active {
+      transform: scale(0.95);
     }
-
-    .portfolio-slide:active {
-      transform: scale(0.98);
-    }
-
-    .portfolio-slide:hover {
-      transform: scale(1.02);
-    }
-
-    .portfolio-slide img {
+    .avatar-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      border-radius: 50%;
+      display: block;
     }
 
-    .portfolio-slide:hover img {
-      transform: scale(1.06);
+    /* Name & Verified Badge */
+    .name-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .name-row h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .verified-badge {
+      width: 19px;
+      height: 19px;
+      color: #38bdf8;
+      flex-shrink: 0;
+      display: inline-flex;
     }
 
-    /* شريط تمرير أنيق للوحة التحكم */
-    .custom-scroll::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    .custom-scroll::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: rgba(150, 150, 150, 0.3);
-      border-radius: 999px;
+    .bio {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin: 0 auto 20px;
+      max-width: 340px;
     }
 
-    /* زر تبديل iOS Switch */
-    .ios-switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 26px;
+    /* Social Icons Grid / Row */
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 11px;
+      margin-bottom: 26px;
+    }
+    .socials.list-layout {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .social-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .socials.list-layout .social-btn {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+    .social-btn:hover, .social-btn:active {
+      background: var(--glass-hover);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+    .social-btn svg {
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
     }
-    .ios-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
+    .social-label {
+      display: none;
+      font-size: 0.92rem;
+      font-weight: 500;
     }
-    .ios-slider {
-      position: absolute;
-      cursor: pointer;
-      inset: 0;
-      background-color: rgba(120, 120, 128, 0.32);
-      transition: 0.3s;
-      border-radius: 34px;
-    }
-    .ios-slider:before {
-      position: absolute;
-      content: "";
-      height: 20px;
-      width: 20px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      border-radius: 50%;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    input:checked + .ios-slider {
-      background-color: #34C759;
-    }
-    input:checked + .ios-slider:before {
-      transform: translateX(18px);
+    .socials.list-layout .social-label {
+      display: inline;
     }
 
-    /* إشعار Toast */
-    .toast-enter {
-      animation: toastIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    /* Works Slider Section */
+    .works-section {
+      text-align: right;
     }
-    @keyframes toastIn {
-      from { opacity: 0; transform: translateY(16px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+    .section-header h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .slider-controls {
+      display: flex;
+      gap: 6px;
+    }
+    .slider-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .works-track {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+    }
+    .works-track::-webkit-scrollbar {
+      display: none;
+    }
+    .work-slide {
+      flex: 0 0 155px;
+      height: 235px;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      scroll-snap-align: start;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+    .work-slide:active {
+      transform: scale(0.97);
+    }
+    .work-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .work-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 24px 10px 10px;
+      background: linear-gradient(to top, rgba(0,0,0,0.82), transparent);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #fff;
+      text-align: right;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 900;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.open {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 82dvh;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    /* Password Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 17, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 340px;
+      background: rgba(24, 30, 48, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+    }
+    .login-box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .login-box p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .input-field {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.92rem;
+      outline: none;
+      margin-bottom: 10px;
+    }
+    .input-field:focus {
+      border-color: var(--accent);
+    }
+    .btn {
+      padding: 10px 16px;
+      border-radius: 13px;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #07131f;
+      width: 100%;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.22);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+    .error-msg {
+      color: #f87171;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    /* Fullscreen Admin Dashboard Drawer */
+    .admin-panel {
+      position: fixed;
+      inset: 0;
+      background: #0b101d;
+      z-index: 1100;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .admin-panel.open {
+      display: flex;
+    }
+    .admin-topbar {
+      padding: calc(14px + env(safe-area-inset-top)) 16px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .admin-topbar h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .admin-tabs {
+      display: flex;
+      gap: 6px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: rgba(56, 189, 248, 0.16);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+    .admin-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px 16px calc(32px + env(safe-area-inset-bottom));
+      max-width: 640px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 14px;
+      text-align: right;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .color-item {
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+    }
+    .color-item input[type="color"] {
+      width: 34px;
+      height: 28px;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    .item-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .item-info {
+      flex: 1;
+      min-width: 0;
+      text-align: right;
+    }
+    .item-info strong {
+      display: block;
+      font-size: 0.9rem;
+    }
+    .item-info span {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+    .mini-btn {
+      padding: 6px 9px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 0.76rem;
+      cursor: pointer;
+    }
+
+    /* Floating Admin Toggle Button (Only visible AFTER login) */
+    .floating-admin-btn {
+      position: fixed;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      left: 18px;
+      z-index: 950;
+      background: #38bdf8;
+      color: #06131f;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.45);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+    .floating-admin-btn.visible {
+      display: inline-flex;
     }
   </style>
 </head>
-<body class="antialiased selection:bg-blue-500 selection:text-white">
+<body>
 
-  <!-- الخلفية المحيطية المتدرجة -->
-  <div class="ambient-canvas">
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
-  </div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-  <!-- الحاوية الرئيسية لصفحة الهبوط -->
-  <main id="publicPage" class="min-h-[100dvh] w-full max-w-[440px] mx-auto px-4 sm:px-5 pt-8 pb-12 flex flex-col gap-5 sm:gap-6 relative z-10">
-    <!-- يتم حقن الأقسام ديناميكياً هنا حسب ترتيب لوحة التحكم -->
+  <!-- Main Landing Card -->
+  <main class="container" id="mainCard">
+    <div class="avatar-wrap" id="avatarTrigger" title="الصورة الشخصية">
+      <img id="profileAvatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="الصورة الشخصية">
+    </div>
+
+    <div class="name-row">
+      <h1 id="profileName">أنس أبوالفتوح</h1>
+      <span class="verified-badge" id="verifiedBadge" title="حساب موثق">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"/>
+        </svg>
+      </span>
+    </div>
+
+    <p class="bio" id="profileBio">مصمم هويات بصرية ومدير تسويق رقمي — أصنع علامات تجارية متكاملة تجمع بين البساطة والأثر.</p>
+
+    <div id="dynamicSections"></div>
   </main>
 
-  <!-- نافذة معاينة العمل المكبر (Lightbox) -->
-  <div id="lightboxModal" onclick="if(event.target === this) closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-xl transition-opacity">
-    <div class="relative w-full max-w-[360px] apple-glass rounded-3xl overflow-hidden shadow-2xl border border-white/25">
-      <button onclick="closeLightbox()" aria-label="إغلاق" class="absolute top-3 left-3 z-20 w-10 h-10 rounded-full bg-black/50 active:scale-95 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-      <div class="aspect-[9/15] w-full bg-black/30">
-        <img id="lightboxImg" src="" alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="p-4 text-right">
-        <h3 id="lightboxTitle" class="font-bold text-base"></h3>
-        <p id="lightboxDesc" class="text-xs opacity-80 mt-1 leading-relaxed"></p>
-      </div>
+  <!-- Image Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+    <img id="lightboxImg" src="" alt="معاينة العمل">
+  </div>
+
+  <!-- Password Login Modal -->
+  <div class="modal-backdrop" id="loginModal">
+    <div class="login-box">
+      <h3>لوحة التحكم الخاصة</h3>
+      <p>أدخل كلمة المرور للوصول إلى إعدادات الصفحة</p>
+      <input type="password" id="passwordInput" class="input-field" placeholder="كلمة المرور" onkeydown="if(event.key==='Enter') verifyPassword()">
+      <div class="error-msg" id="loginError">كلمة المرور غير صحيحة</div>
+      <button type="button" class="btn btn-primary" onclick="verifyPassword()">دخول</button>
+      <button type="button" class="btn btn-secondary" style="width:100%; margin-top:8px;" onclick="closeLoginModal()">إلغاء</button>
     </div>
   </div>
 
-  <!-- نافذة تسجيل الدخول المخفية (Password Modal) -->
-  <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-xl">
-    <div class="w-full max-w-[360px] rounded-3xl p-6 bg-zinc-900/90 border border-white/15 text-white shadow-2xl">
-      <div class="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center mx-auto mb-4">
-        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-        </svg>
+  <!-- Floating Admin Button (Appears ONLY after successful login) -->
+  <button type="button" class="floating-admin-btn" id="floatingAdminBtn" onclick="openAdminPanel()">
+    <span>⚙️</span>
+    <span>فتح لوحة التحكم</span>
+  </button>
+
+  <!-- Admin Dashboard -->
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-topbar">
+      <h2>لوحة التحكم</h2>
+      <div style="display:flex; gap:8px;">
+        <button type="button" class="btn btn-secondary" onclick="closeAdminPanel()">معاينة الصفحة</button>
+        <button type="button" class="btn btn-danger" onclick="logoutAdmin()">خروج</button>
       </div>
-      <h2 class="text-center text-lg font-bold">الدخول إلى لوحة التحكم</h2>
-      <p class="text-center text-xs text-zinc-400 mt-1 mb-5">أدخل كلمة المرور الخاصة لتخصيص الصفحة</p>
-      
-      <form id="loginForm" class="space-y-3">
-        <input 
-          type="password" 
-          id="adminPasswordInput" 
-          placeholder="كلمة المرور" 
-          autocomplete="current-password"
-          class="w-full px-4 py-3 rounded-2xl bg-white/10 border border-white/15 text-white placeholder-zinc-400 text-center text-sm focus:outline-none focus:border-blue-400 transition"
-        />
-        <p id="loginError" class="text-red-400 text-xs text-center hidden">كلمة المرور غير صحيحة، حاول مرة أخرى.</p>
-        <div class="flex gap-2 pt-2">
-          <button type="submit" class="flex-1 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition shadow-lg shadow-blue-600/30">
-            دخول
-          </button>
-          <button type="button" onclick="closeLoginModal()" class="px-4 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-zinc-300 text-sm transition">
-            إلغاء
-          </button>
+    </div>
+
+    <div class="admin-tabs">
+      <button type="button" class="tab-btn active" onclick="switchTab('identity', this)">الهوية والألوان</button>
+      <button type="button" class="tab-btn" onclick="switchTab('socials', this)">الحسابات والترتيب</button>
+      <button type="button" class="tab-btn" onclick="switchTab('works', this)">سلايدر أعمالي</button>
+      <button type="button" class="tab-btn" onclick="switchTab('export', this)">حفظ ورفع لجيتهاب</button>
+    </div>
+
+    <div class="admin-body">
+      <!-- Tab 1: Identity & Colors -->
+      <div class="tab-pane active" id="tab-identity">
+        <div class="form-group">
+          <label>رابط الصورة الشخصية (URL أو Base64)</label>
+          <input type="text" id="editAvatar" class="input-field" oninput="updateLiveState()">
         </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- لوحة التحكم الكاملة (Admin Dashboard Drawer/Modal) -->
-  <div id="adminDashboard" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="w-full max-w-[680px] h-[94dvh] sm:h-[86vh] bg-zinc-950/95 border-t sm:border border-white/15 text-zinc-100 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden pb-[env(safe-area-inset-bottom)]">
-      
-      <!-- رأس لوحة التحكم -->
-      <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
-          </div>
-          <div>
-            <h2 class="font-bold text-base">لوحة التحكم</h2>
-            <p class="text-[11px] text-zinc-400">تخصيص الهوية، الروابط، ومعرض الأعمال</p>
+        <div class="form-group">
+          <label>الاسم المعروض</label>
+          <input type="text" id="editName" class="input-field" oninput="updateLiveState()">
+        </div>
+        <div class="form-group" style="display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.05); padding:10px 14px; border-radius:14px;">
+          <span style="font-size:0.86rem;">إظهار علامة التوثيق بجانب الاسم</span>
+          <input type="checkbox" id="editVerified" onchange="updateLiveState()" style="width:18px; height:18px;">
+        </div>
+        <div class="form-group">
+          <label>النبذة التعريفية</label>
+          <textarea id="editBio" class="input-field" rows="3" oninput="updateLiveState()"></textarea>
+        </div>
+        <div class="form-group">
+          <label>طريقة عرض الحسابات</label>
+          <select id="editSocialLayout" class="input-field" onchange="updateLiveState()">
+            <option value="grid">أيقونات زجاجية متجاورة (Grid)</option>
+            <option value="list">قائمة أزرار كاملة العرض (List)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ترتيب عناصر الصفحة الرئيسية</label>
+          <select id="editSectionOrder" class="input-field" onchange="updateLiveState()">
+            <option value="socials-first">الحسابات أولاً ثم أعمالي</option>
+            <option value="works-first">أعمالي أولاً ثم الحسابات</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ألوان الهوية والخلفية</label>
+          <div class="color-grid">
+            <div class="color-item"><span>لون التمييز</span><input type="color" id="editAccent" oninput="updateLiveState()"></div>
+            <div class="color-item"><span>خلفية 1</span><input type="color" id="editBgStart" oninput="updateLiveState()"></div>
+            <div class="color-item"><span>خلفية 2</span><input type="color" id="editBgMid" oninput="updateLiveState()"></div>
+            <div class="color-item"><span>خلفية أساسية</span><input type="color" id="editBgEnd" oninput="updateLiveState()"></div>
           </div>
         </div>
-        <button onclick="closeDashboard()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-medium transition flex items-center gap-1.5">
-          <span>معاينة الصفحة</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
       </div>
 
-      <!-- شريط التبويبات -->
-      <div class="flex overflow-x-auto border-b border-white/10 px-3 pt-2 gap-1 bg-white/[0.02] shrink-0 custom-scroll">
-        <button onclick="switchTab('brand')" data-tab="brand" class="dash-tab active px-3.5 py-2.5 text-xs font-semibold rounded-t-xl border-b-2 border-blue-500 text-blue-400 whitespace-nowrap transition">
-          الهوية والألوان
-        </button>
-        <button onclick="switchTab('layout')" data-tab="layout" class="dash-tab px-3.5 py-2.5 text-xs font-semibold rounded-t-xl border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 whitespace-nowrap transition">
-          طريقة العرض والترتيب
-        </button>
-        <button onclick="switchTab('socials')" data-tab="socials" class="dash-tab px-3.5 py-2.5 text-xs font-semibold rounded-t-xl border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 whitespace-nowrap transition">
-          الحسابات الاجتماعية
-        </button>
-        <button onclick="switchTab('portfolio')" data-tab="portfolio" class="dash-tab px-3.5 py-2.5 text-xs font-semibold rounded-t-xl border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 whitespace-nowrap transition">
-          معرض أعمالي
-        </button>
-        <button onclick="switchTab('export')" data-tab="export" class="dash-tab px-3.5 py-2.5 text-xs font-semibold rounded-t-xl border-b-2 border-transparent text-emerald-400 hover:text-emerald-300 whitespace-nowrap transition">
-          حفظ ورفع لجيتهاب
-        </button>
+      <!-- Tab 2: Social Accounts -->
+      <div class="tab-pane" id="tab-socials">
+        <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); margin-bottom:16px;">
+          <h4 style="font-size:0.9rem; margin-bottom:10px;">إضافة أو تعديل حساب</h4>
+          <input type="hidden" id="socialEditIndex" value="-1">
+          <div class="form-group">
+            <label>المنصة</label>
+            <select id="socialPlatform" class="input-field">
+              <option value="whatsapp">واتساب (WhatsApp)</option>
+              <option value="instagram">انستجرام (Instagram)</option>
+              <option value="tiktok">تيك توك (TikTok)</option>
+              <option value="snapchat">سناب شات (Snapchat)</option>
+              <option value="facebook">فيسبوك (Facebook)</option>
+              <option value="behance">بيهانس (Behance)</option>
+              <option value="x">منصة X (تويتر)</option>
+              <option value="linkedin">لينكدإن (LinkedIn)</option>
+              <option value="website">موقع إلكتروني / رابط</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>الرابط أو رقم الواتساب (مثال: 966500000000)</label>
+            <input type="text" id="socialUrl" class="input-field" placeholder="https://... أو رقم الواتساب الدولي">
+          </div>
+          <div class="form-group">
+            <label>اسم العرض (يظهر في وضع القائمة)</label>
+            <input type="text" id="socialLabel" class="input-field" placeholder="مثال: تواصل واتساب">
+          </div>
+          <button type="button" class="btn btn-primary" onclick="saveSocialItem()">حفظ الحساب</button>
+        </div>
+        <div id="socialsAdminList"></div>
       </div>
 
-      <!-- محتوى التبويبات -->
-      <div class="flex-1 overflow-y-auto p-5 space-y-6 custom-scroll">
-        
-        <!-- تبويب 1: الهوية والألوان -->
-        <section id="tab-brand" class="tab-panel space-y-5">
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-            <h3 class="text-sm font-bold text-zinc-200">المعلومات الشخصية</h3>
-            
-            <div class="flex items-center gap-4">
-              <img id="dashAvatarPreview" src="" alt="Avatar" class="w-16 h-16 rounded-full object-cover border-2 border-white/20 shrink-0" />
-              <div class="flex-1 space-y-2">
-                <label class="block text-xs text-zinc-400">رابط الصورة الشخصية أو رفع صورة من جهازك</label>
-                <div class="flex gap-2">
-                  <input type="text" id="inputAvatarUrl" placeholder="https://..." class="flex-1 px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500" />
-                  <label class="px-3 py-2 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-blue-300 text-xs font-medium cursor-pointer whitespace-nowrap transition">
-                    رفع صورة
-                    <input type="file" id="inputAvatarFile" accept="image/*" class="hidden" />
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs text-zinc-400 mb-1">الاسم الظاهر</label>
-                <input type="text" id="inputName" class="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm text-white focus:outline-none focus:border-blue-500" />
-              </div>
-              <div>
-                <label class="block text-xs text-zinc-400 mb-1">شارة الحالة (اختياري)</label>
-                <input type="text" id="inputBadge" placeholder="مثال: متاح للمشاريع الإبداعية" class="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm text-white focus:outline-none focus:border-blue-500" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs text-zinc-400 mb-1">النبذة التعريفية (Bio)</label>
-              <textarea id="inputBio" rows="2" class="w-full px-3.5 py-2.5 rounded-xl bg-black/40 border border-white/10 text-sm text-white focus:outline-none focus:border-blue-500"></textarea>
-            </div>
-
-            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-              <div>
-                <span class="block text-xs font-medium text-zinc-200">علامة التوثيق الزرقاء</span>
-                <span class="text-[11px] text-zinc-400">إظهار شارة التوثيق بجانب اسمك</span>
-              </div>
-              <label class="ios-switch">
-                <input type="checkbox" id="toggleVerified" onchange="toggleVerifiedBadge(this.checked)" />
-                <span class="ios-slider"></span>
-              </label>
-            </div>
+      <!-- Tab 3: Works Slider -->
+      <div class="tab-pane" id="tab-works">
+        <div style="background:rgba(255,255,255,0.04); padding:14px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); margin-bottom:16px;">
+          <h4 style="font-size:0.9rem; margin-bottom:10px;">إضافة عمل جديد (صورة عمودية)</h4>
+          <div class="form-group">
+            <label>رابط الصورة العمودية (URL)</label>
+            <input type="text" id="workImgUrl" class="input-field" placeholder="https://...">
           </div>
-
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-            <h3 class="text-sm font-bold text-zinc-200">تخصيص الألوان والزجاج يدوياً</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <label class="p-2.5 rounded-xl bg-black/30 border border-white/10 flex flex-col gap-1.5 cursor-pointer">
-                <span class="text-[11px] text-zinc-400">اللون الأساسي</span>
-                <input type="color" id="colorAccent" class="w-full h-8 rounded cursor-pointer bg-transparent border-0" />
-              </label>
-              <label class="p-2.5 rounded-xl bg-black/30 border border-white/10 flex flex-col gap-1.5 cursor-pointer">
-                <span class="text-[11px] text-zinc-400">خلفية 1</span>
-                <input type="color" id="colorBg1" class="w-full h-8 rounded cursor-pointer bg-transparent border-0" />
-              </label>
-              <label class="p-2.5 rounded-xl bg-black/30 border border-white/10 flex flex-col gap-1.5 cursor-pointer">
-                <span class="text-[11px] text-zinc-400">خلفية 2</span>
-                <input type="color" id="colorBg2" class="w-full h-8 rounded cursor-pointer bg-transparent border-0" />
-              </label>
-              <label class="p-2.5 rounded-xl bg-black/30 border border-white/10 flex flex-col gap-1.5 cursor-pointer">
-                <span class="text-[11px] text-zinc-400">خلفية 3</span>
-                <input type="color" id="colorBg3" class="w-full h-8 rounded cursor-pointer bg-transparent border-0" />
-              </label>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-zinc-400">نمط الزجاج</span>
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                  <button type="button" onclick="setGlassMode('dark')" id="btnGlassDark" class="py-2 rounded-xl text-xs font-medium border transition">زجاج داكن (Dark)</button>
-                  <button type="button" onclick="setGlassMode('light')" id="btnGlassLight" class="py-2 rounded-xl text-xs font-medium border transition">زجاج فاتح (Light)</button>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-zinc-400">قوة الضبابية (Blur)</span>
-                  <span id="blurValueLabel" class="text-blue-400 font-mono">24px</span>
-                </div>
-                <input type="range" id="rangeBlur" min="8" max="40" value="24" class="w-full accent-blue-500 mt-2" />
-              </div>
-            </div>
+          <div class="form-group">
+            <label>عنوان العمل (اختياري)</label>
+            <input type="text" id="workTitle" class="input-field" placeholder="مثال: هوية بصرية متكاملة">
           </div>
-        </section>
+          <button type="button" class="btn btn-primary" onclick="addWorkItem()">إضافة للسلايدر</button>
+        </div>
+        <div id="worksAdminList"></div>
+      </div>
 
-        <!-- تبويب 2: طريقة العرض والترتيب -->
-        <section id="tab-layout" class="tab-panel hidden space-y-5">
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-            <h3 class="text-sm font-bold text-zinc-200">طريقة عرض أيقونات التواصل</h3>
-            <p class="text-xs text-zinc-400">اختر الشكل المناسب لعرض حساباتك في الصفحة الرئيسية</p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1" id="socialStyleSelector">
-              <button type="button" onclick="setSocialDisplayStyle('dock')" data-style="dock" class="style-opt p-3.5 rounded-2xl border text-right transition">
-                <div class="font-bold text-xs mb-1">شريط أيقونات (Apple Dock)</div>
-                <div class="text-[11px] opacity-70">أيقونات زجاجية دائرية متجاورة بأسلوب ماك وآيفون</div>
-              </button>
-              <button type="button" onclick="setSocialDisplayStyle('pills')" data-style="pills" class="style-opt p-3.5 rounded-2xl border text-right transition">
-                <div class="font-bold text-xs mb-1">بطاقات عريضة (Cards)</div>
-                <div class="text-[11px] opacity-70">بطاقة زجاجية لكل حساب مع الاسم واسم المستخدم</div>
-              </button>
-              <button type="button" onclick="setSocialDisplayStyle('grid')" data-style="grid" class="style-opt p-3.5 rounded-2xl border text-right transition">
-                <div class="font-bold text-xs mb-1">شبكة مزدوجة (Bento Grid)</div>
-                <div class="text-[11px] opacity-70">مربعات زجاجية أنيقة بعمودين بأسلوب iOS Widgets</div>
-              </button>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-            <h3 class="text-sm font-bold text-zinc-200">ترتيب أقسام الصفحة الرئيسية</h3>
-            <p class="text-xs text-zinc-400">حرك الأقسام للأعلى أو الأسفل أو قم بإخفاء أي قسم</p>
-            <div id="sectionsOrderList" class="space-y-2 pt-1">
-              <!-- يتم توليد قائمة ترتيب الأقسام هنا -->
-            </div>
-          </div>
-        </section>
-
-        <!-- تبويب 3: الحسابات الاجتماعية -->
-        <section id="tab-socials" class="tab-panel hidden space-y-5">
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-            <h3 class="text-sm font-bold text-zinc-200">إضافة حساب جديد</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-              <select id="newSocialPlatform" onchange="onNewPlatformChange(this.value)" class="px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500">
-                <option value="whatsapp">واتساب (WhatsApp)</option>
-                <option value="instagram">انستجرام (Instagram)</option>
-                <option value="tiktok">تيك توك (TikTok)</option>
-                <option value="snapchat">سناب شات (Snapchat)</option>
-                <option value="facebook">فيسبوك (Facebook)</option>
-                <option value="behance">بيهانس (Behance)</option>
-                <option value="x">منصة إكس (X / Twitter)</option>
-                <option value="youtube">يوتيوب (YouTube)</option>
-                <option value="linkedin">لينكد إن (LinkedIn)</option>
-                <option value="website">موقع إلكتروني (Website)</option>
-              </select>
-              <input type="text" id="newSocialLabel" placeholder="الاسم (مثال: واتساب)" class="px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500" />
-              <input type="text" id="newSocialHandle" placeholder="@username أو الرقم" class="px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500" />
-            </div>
-            <div class="flex gap-2">
-              <input type="text" id="newSocialUrl" placeholder="أدخل رقم الواتساب (مثال: 966500000000) أو الرابط الكامل" class="flex-1 px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500" dir="ltr" />
-              <button type="button" onclick="addSocialAccount()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition whitespace-nowrap">
-                + إضافة الحساب
-              </button>
-            </div>
-          </div>
-
-          <div class="space-y-2.5">
-            <h3 class="text-sm font-bold text-zinc-200 px-1">الحسابات الحالية (تعديل / إخفاء / ترتيب)</h3>
-            <div id="socialsManageList" class="space-y-2.5">
-              <!-- قائمة الحسابات القابلة للتعديل -->
-            </div>
-          </div>
-        </section>
-
-        <!-- تبويب 4: معرض أعمالي -->
-        <section id="tab-portfolio" class="tab-panel hidden space-y-5">
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-            <h3 class="text-sm font-bold text-zinc-200">إضافة عمل جديد (صورة عمودية)</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <input type="text" id="newSlideTitle" placeholder="عنوان العمل (مثال: تصميم هوية بصرية)" class="px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500" />
-              <input type="text" id="newSlideDesc" placeholder="وصف مختصر للعمل" class="px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500" />
-            </div>
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input type="text" id="newSlideUrl" placeholder="رابط الصورة العمودية https://..." class="flex-1 px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white focus:outline-none focus:border-blue-500" dir="ltr" />
-              <label class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs text-center cursor-pointer transition whitespace-nowrap">
-                أو رفع صورة من جهازك
-                <input type="file" id="newSlideFile" accept="image/*" class="hidden" />
-              </label>
-              <button type="button" onclick="addPortfolioSlide()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition whitespace-nowrap">
-                + إضافة للسلايدر
-              </button>
-            </div>
-            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-              <span class="text-xs text-zinc-300">التحريك التلقائي للسلايدر (Auto-play)</span>
-              <label class="ios-switch">
-                <input type="checkbox" id="toggleAutoplay" onchange="toggleSliderAutoplay(this.checked)" />
-                <span class="ios-slider"></span>
-              </label>
-            </div>
-          </div>
-
-          <div class="space-y-2.5">
-            <h3 class="text-sm font-bold text-zinc-200 px-1">الشرائح الحالية في معرض أعمالي</h3>
-            <div id="portfolioManageList" class="space-y-2.5">
-              <!-- قائمة الأعمال -->
-            </div>
-          </div>
-        </section>
-
-        <!-- تبويب 5: الحفظ والتصدير لجيتهاب -->
-        <section id="tab-export" class="tab-panel hidden space-y-5">
-          <div class="p-5 rounded-2xl bg-gradient-to-br from-emerald-500/15 to-blue-500/10 border border-emerald-400/25 space-y-3">
-            <div class="flex items-center gap-2.5 text-emerald-300">
-              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-              <h3 class="font-bold text-base">تصدير الملف النهائي للرفع على GitHub</h3>
-            </div>
-            <p class="text-xs text-zinc-300 leading-relaxed">
-              لأن استضافة <strong>GitHub Pages</strong> مجانية وثابتة، يتم حفظ تعديلاتك حالياً في متصفحك للمعاينة الفورية. لكي يرى جميع الزوار تعديلاتك الجديدة على رابط موقعك في جيتهاب، اضغط على الزر أدناه لتحميل ملف <code class="px-1.5 py-0.5 rounded bg-black/40 text-emerald-300">index.html</code> المحدّث ثم ارفعه إلى مستودعك (Repository) في GitHub.
-            </p>
-            <button type="button" onclick="exportStandaloneHTML()" class="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/25 transition flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-              <span>تحميل الملف النهائي (index.html)</span>
-            </button>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2.5 text-xs text-zinc-300">
-            <h4 class="font-bold text-white text-sm">طرق فتح لوحة التحكم المخفية مستقبلاً:</h4>
-            <ul class="list-disc list-inside space-y-1.5 text-zinc-400">
-              <li>إضافة <code class="text-blue-300">#admin</code> في نهاية رابط موقعك (مثال: <code class="text-zinc-200">username.github.io/#admin</code>)</li>
-              <li>الضغط <strong>5 مرات متتالية</strong> بسرعة على صورتك الشخصية</li>
-              <li>من لوحة المفاتيح: الضغط على <code class="text-blue-300">Ctrl + Shift + L</code></li>
-            </ul>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-between">
-            <div>
-              <h4 class="font-bold text-xs text-red-300">استعادة الإعدادات الافتراضية</h4>
-              <p class="text-[11px] text-zinc-400 mt-0.5">إرجاع الألوان والبيانات إلى حالتها الأصلية</p>
-            </div>
-            <button type="button" onclick="resetToDefaults()" class="px-3.5 py-2 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-semibold transition">
-              إعادة ضبط
-            </button>
-          </div>
-        </section>
-
+      <!-- Tab 4: Export for GitHub -->
+      <div class="tab-pane" id="tab-export">
+        <div style="background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); padding:16px; border-radius:16px; text-align:right; line-height:1.65; font-size:0.86rem; margin-bottom:16px;">
+          <strong>طريقة حفظ تعديلاتك نهائياً على GitHub:</strong><br>
+          لأن GitHub Pages يستضيف ملفات ثابتة، فإن التعديلات التي تجريها هنا تُحفظ في متصفحك فقط حتى تقوم بتحميل الملف المُحدّث واستبداله في مستودعك.
+        </div>
+        <button type="button" class="btn btn-primary" style="margin-bottom:10px;" onclick="downloadUpdatedHTML()">⬇️ تحميل ملف index.html المُحدّث</button>
+        <button type="button" class="btn btn-secondary" style="width:100%;" onclick="copyUpdatedHTML()">📋 نسخ كود HTML المُحدّث للحافظة</button>
       </div>
     </div>
   </div>
 
-  <!-- حاوية الإشعارات العائمة -->
-  <div id="toastContainer" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] pointer-events-none"></div>
+  <script id="app-state" type="application/json">
+  {
+    "name": "أنس أبوالفتوح",
+    "verified": true,
+    "bio": "مصمم هويات بصرية ومدير تسويق رقمي — أصنع علامات تجارية متكاملة تجمع بين البساطة والأثر.",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+    "socialLayout": "grid",
+    "sectionOrder": "socials-first",
+    "colors": {
+      "accent": "#38bdf8",
+      "bgStart": "#0f172a",
+      "bgMid": "#1e1b4b",
+      "bgEnd": "#090d16"
+    },
+    "socials": [
+      { "platform": "whatsapp", "label": "واتساب", "url": "https://wa.me/966500000000", "visible": true },
+      { "platform": "instagram", "label": "انستجرام", "url": "https://instagram.com", "visible": true },
+      { "platform": "tiktok", "label": "تيك توك", "url": "https://tiktok.com", "visible": true },
+      { "platform": "snapchat", "label": "سناب شات", "url": "https://snapchat.com", "visible": true },
+      { "platform": "facebook", "label": "فيسبوك", "url": "https://facebook.com", "visible": true },
+      { "platform": "behance", "label": "بيهانس", "url": "https://behance.net", "visible": true }
+    ],
+    "works": [
+      { "title": "هوية بصرية متكاملة", "image": "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&q=80" },
+      { "title": "تصميم تغليف منتجات", "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&q=80" },
+      { "title": "واجهة تطبيق وتجربة مستخدم", "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80" },
+      { "title": "حملة إعلانية رقمية", "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?w=600&q=80" }
+    ]
+  }
+  </script>
 
   <script>
-    // =========================================================================
-    // 1. الإعدادات الافتراضية المدمجة (يتم تحديثها تلقائياً عند تصدير الملف)
-    // =========================================================================
-    const DEFAULT_CONFIG = /*__CONFIG_START__*/{
-      profile: {
-        name: "أنس أبوالفتوح",
-        verified: true,
-        bio: "مصمم واجهات وتجربة مستخدم • أصنع تجارب رقمية تجمع بين البساطة والجمال",
-        badge: "متاح للمشاريع الإبداعية",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
-      },
-      theme: {
-        mode: "dark",
-        accent: "#0A84FF",
-        bg1: "#090d16",
-        bg2: "#172554",
-        bg3: "#3b0764",
-        blur: 24
-      },
-      layout: {
-        sectionOrder: ["profile", "socials", "portfolio"],
-        hiddenSections: [],
-        socialStyle: "dock" // 'dock' | 'pills' | 'grid'
-      },
-      socials: [
-        { id: "s0", platform: "whatsapp", label: "واتساب", handle: "تواصل مباشر", url: "https://wa.me/966500000000", visible: true },
-        { id: "s1", platform: "instagram", label: "انستجرام", handle: "@anas.design", url: "https://instagram.com", visible: true },
-        { id: "s2", platform: "tiktok", label: "تيك توك", handle: "@anas.studio", url: "https://tiktok.com", visible: true },
-        { id: "s3", platform: "snapchat", label: "سناب شات", handle: "anas.snap", url: "https://snapchat.com", visible: true },
-        { id: "s4", platform: "facebook", label: "فيسبوك", handle: "Anas Creative", url: "https://facebook.com", visible: true },
-        { id: "s5", platform: "behance", label: "بيهانس", handle: "behance.net/anas", url: "https://behance.net", visible: true }
-      ],
-      portfolio: {
-        title: "أعمالي",
-        autoplay: true,
-        slides: [
-          {
-            id: "p1",
-            title: "تصميم تطبيق بنكي ذكي",
-            desc: "واجهة مستخدم عصرية بتجربة سلسة وأسلوب زجاجي حديث",
-            image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
-            visible: true
-          },
-          {
-            id: "p2",
-            title: "هوية بصرية لعلامة عطور",
-            desc: "إخراج فني وتصوير منتجات بإضاءة درامية هادئة",
-            image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80",
-            visible: true
-          },
-          {
-            id: "p3",
-            title: "واجهة نظام iOS تفاعلية",
-            desc: "مجموعة ودجات مصممة بعناية لتجربة هاتف متكاملة",
-            image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&w=600&q=80",
-            visible: true
-          },
-          {
-            id: "p4",
-            title: "فن رقمي ثلاثي الأبعاد",
-            desc: "تكوينات تجريدية بألوان زجاجية متداخلة",
-            image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=600&q=80",
-            visible: true
-          }
-        ]
-      }
-    }/*__CONFIG_END__*/;
-
-    const STORAGE_KEY = "anas_apple_glass_bio_v2";
     const ADMIN_PASS = "anas12345";
-    let state = loadState();
-    let autoplayTimer = null;
-    let avatarClickCount = 0;
-    let avatarClickTimer = null;
+    let isAdminAuthenticated = false;
+    let state = JSON.parse(document.getElementById('app-state').textContent);
 
-    // ثيمات أبل الجاهزة
-    const APPLE_PRESETS = [
-      { name: "أزرق منتصف الليل", mode: "dark", accent: "#0A84FF", bg1: "#090d16", bg2: "#172554", bg3: "#3b0764" },
-      { name: "تيتانيوم أبيض", mode: "light", accent: "#007AFF", bg1: "#e2e8f0", bg2: "#cbd5e1", bg3: "#dbeafe" },
-      { name: "بنفسجي سديمي", mode: "dark", accent: "#BF5AF2", bg1: "#110a1f", bg2: "#3b0764", bg3: "#701a75" },
-      { name: "أخضر زمردي", mode: "dark", accent: "#30D158", bg1: "#061410", bg2: "#064e3b", bg3: "#115e59" }
-    ];
-
-    // أيقونات SVG عالية الدقة للمنصات
-    const PLATFORM_ICONS = {
-      instagram: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`,
-      tiktok: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>`,
-      snapchat: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.8 0-4.8 2.1-4.8 5.1 0 .8.2 1.6.3 2.2-.4.2-.9.2-1.4 0-.5-.2-1 .1-1.1.6-.1.5.2 1 .7 1.2.6.2 1.1.6 1.2 1.1-.4 1.6-1.9 2.8-3.5 3.3-.4.1-.6.6-.4 1 .3.6 1.2.9 2.5 1.1.3.1.5.4.6.8.1.5.5.8 1 .7.9-.2 1.8-.2 2.7.2.7.3 1.4.6 2.2.6s1.5-.3 2.2-.6c.9-.4 1.8-.4 2.7-.2.5.1.9-.2 1-.7.1-.4.3-.7.6-.8 1.3-.2 2.2-.5 2.5-1.1.2-.4 0-.9-.4-1-1.6-.5-3.1-1.7-3.5-3.3.1-.5.6-.9 1.2-1.1.5-.2.8-.7.7-1.2-.1-.5-.6-.8-1.1-.6-.5.2-1 .2-1.4 0 .1-.6.3-1.4.3-2.2C16.8 5.1 14.8 3 12 3z"/></svg>`,
-      facebook: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>`,
-      behance: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/></svg>`,
-      x: `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
-      youtube: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
-      whatsapp: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.361a9.93 9.93 0 0 0 4.843 1.261h.004c5.515 0 9.969-4.453 9.969-9.969 0-2.663-1.037-5.167-2.921-7.05A9.903 9.903 0 0 0 12.031 2zm5.821 14.274c-.244.688-1.418 1.316-1.964 1.398-.503.076-1.139.108-1.838-.114-.425-.135-.97-.316-1.668-.618-2.936-1.268-4.853-4.225-5-4.42-.146-.195-1.194-1.588-1.194-3.03 0-1.441.756-2.15 1.024-2.443.269-.293.586-.366.781-.366.195 0 .391.002.562.01.18.009.422-.068.66.504.244.586.83 2.026.903 2.173.073.146.122.317.024.512-.097.196-.146.318-.293.489-.146.171-.307.382-.439.512-.146.146-.299.305-.128.598.171.293.758 1.251 1.628 2.026 1.119.998 2.062 1.307 2.355 1.454.293.146.464.122.635-.073.171-.196.732-.855.928-1.148.195-.293.39-.244.659-.146.269.097 1.709.806 2.002.952.293.147.488.22.561.342.074.122.074.708-.17 1.396z"/></svg>`,
-      linkedin: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>`,
-      website: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`
+    const ICONS = {
+      whatsapp: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.475 1.331 4.988L2 22l5.188-1.361a9.927 9.927 0 0 0 4.843 1.258h.004c5.515 0 9.968-4.453 9.968-9.969 0-2.663-1.037-5.167-2.92-7.05A9.903 9.903 0 0 0 12.031 2zm5.822 14.129c-.246.693-1.432 1.326-1.988 1.41-.512.077-1.16.109-1.871-.117-.432-.137-.986-.32-1.696-.627-2.984-1.289-4.933-4.294-5.082-4.492-.149-.198-1.214-1.615-1.214-3.081 0-1.466.768-2.187 1.041-2.485.273-.298.595-.372.794-.372.198 0 .397.002.57.01.183.009.428-.069.669.511.248.595.843 2.058.917 2.207.074.149.124.323.025.521-.099.198-.149.323-.298.496-.149.174-.313.388-.447.521-.149.149-.304.31-.13.608.174.298.771 1.272 1.656 2.061 1.138 1.015 2.097 1.329 2.395 1.478.298.149.471.124.645-.074.174-.198.744-.868.942-1.166.198-.298.397-.248.669-.149.273.099 1.736.819 2.034.968.298.149.496.223.57.347.074.124.074.719-.172 1.412z"/></svg>`,
+      instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`,
+      tiktok: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>`,
+      snapchat: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-3.1 0-5.4 2.2-5.4 5.3 0 .8.1 1.6.3 2.3-.3.2-.7.3-1.1.3-.5 0-.9.3-1 .8-.1.5.2 1 .7 1.2.6.2 1.1.5 1.3.9.2.5-.2 1.2-1 2.1-.9 1-2.1 1.6-3.2 1.8-.4.1-.7.4-.7.8 0 .4.3.8.7.9 1.1.2 2.1.5 2.7 1 .3.3.5.7.6 1.1.1.4.5.6.9.6.4 0 .9-.1 1.5-.2.7-.1 1.4-.2 2.2.1.6.2 1.1.5 1.5.5s.9-.3 1.5-.5c.8-.3 1.5-.2 2.2-.1.6.1 1.1.2 1.5.2.4 0 .8-.2.9-.6.1-.4.3-.8.6-1.1.6-.5 1.6-.8 2.7-1 .4-.1.7-.5.7-.9 0-.4-.3-.7-.7-.8-1.1-.2-2.3-.8-3.2-1.8-.8-.9-1.2-1.6-1-2.1.2-.4.7-.7 1.3-.9.5-.2.8-.7.7-1.2-.1-.5-.5-.8-1-.8-.4 0-.8-.1-1.1-.3.2-.7.3-1.5.3-2.3C17.4 4.2 15.1 2 12 2z"/></svg>`,
+      facebook: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>`,
+      behance: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/></svg>`,
+      x: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+      linkedin: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>`,
+      website: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`
     };
 
-    // =========================================================================
-    // 2. إدارة الحالة والتخزين المحلي
-    // =========================================================================
-    function loadState() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          return JSON.parse(saved);
-        }
-      } catch (e) {
-        console.warn("Storage unavailable", e);
-      }
-      return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+    function applyColors() {
+      const r = document.documentElement.style;
+      r.setProperty('--accent', state.colors.accent);
+      r.setProperty('--bg-start', state.colors.bgStart);
+      r.setProperty('--bg-mid', state.colors.bgMid);
+      r.setProperty('--bg-end', state.colors.bgEnd);
     }
 
-    function saveState() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch (e) {
-        showToast("تنبيه: حجم الصور كبير على ذاكرة المتصفح المؤقتة، يفضل استخدام روابط صور أو تصدير الملف.");
-      }
-      applyThemeVariables();
-      renderPublicPage();
-    }
+    function renderLanding() {
+      applyColors();
+      document.getElementById('profileAvatar').src = state.avatar;
+      document.getElementById('profileName').textContent = state.name;
+      document.getElementById('verifiedBadge').style.display = state.verified ? 'inline-flex' : 'none';
+      document.getElementById('profileBio').textContent = state.bio;
 
-    // =========================================================================
-    // 3. تطبيق الألوان ومتغيرات الزجاج على الصفحة
-    // =========================================================================
-    function applyThemeVariables() {
-      const root = document.documentElement;
-      const t = state.theme;
-      root.style.setProperty('--accent', t.accent);
-      root.style.setProperty('--bg-1', t.bg1);
-      root.style.setProperty('--bg-2', t.bg2);
-      root.style.setProperty('--bg-3', t.bg3);
-      root.style.setProperty('--glass-blur', `${t.blur}px`);
-
-      if (t.mode === 'light') {
-        root.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.58)');
-        root.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.75)');
-        root.style.setProperty('--glass-hover', 'rgba(255, 255, 255, 0.75)');
-        root.style.setProperty('--text-main', '#0f172a');
-        root.style.setProperty('--text-muted', 'rgba(15, 23, 42, 0.68)');
-        root.style.setProperty('--shadow-glass', '0 16px 40px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)');
-      } else {
-        root.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.11)');
-        root.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.22)');
-        root.style.setProperty('--glass-hover', 'rgba(255, 255, 255, 0.18)');
-        root.style.setProperty('--text-main', '#ffffff');
-        root.style.setProperty('--text-muted', 'rgba(255, 255, 255, 0.72)');
-        root.style.setProperty('--shadow-glass', '0 20px 50px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.24)');
-      }
-
-      document.title = `${state.profile.name} | الملف الشخصي والأعمال`;
-    }
-
-    // =========================================================================
-    // 4. رسم الصفحة الرئيسية (Public View)
-    // =========================================================================
-    function renderPublicPage() {
-      const container = document.getElementById('publicPage');
-      container.innerHTML = '';
-
-      const sectionRenderers = {
-        profile: renderProfileSection,
-        socials: renderSocialsSection,
-        portfolio: renderPortfolioSection
-      };
-
-      state.layout.sectionOrder.forEach(secKey => {
-        if (!state.layout.hiddenSections.includes(secKey) && sectionRenderers[secKey]) {
-          container.appendChild(sectionRenderers[secKey]());
-        }
-      });
-
-      setupSliderAutoplay();
-    }
-
-    // قسم الصورة الشخصية والنبذة
-    function renderProfileSection() {
-      const sec = document.createElement('section');
-      sec.className = 'flex flex-col items-center text-center pt-1';
-
-      const badgeHtml = state.profile.badge 
-        ? `<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full apple-glass text-[11px] font-medium mb-2.5">
-             <span class="w-2 h-2 rounded-full animate-pulse" style="background-color: var(--accent)"></span>
-             <span style="color: var(--text-muted)">${escapeHTML(state.profile.badge)}</span>
-           </div>` 
-        : '';
-
-      const isVerified = state.profile.verified !== false;
-      const verifiedSvg = isVerified
-        ? `<span class="inline-flex items-center justify-center shrink-0" title="حساب موثق" aria-label="حساب موثق">
-             <svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none">
-               <path d="M12 1.75L14.68 3.63L17.92 3.32L19.06 6.37L21.84 8.07L21.11 11.24L22.5 14.19L20.17 16.46L19.72 19.68L16.5 20.13L14.23 22.46L11.28 21.07L8.11 21.8L6.41 19.02L3.36 17.88L3.67 14.64L1.79 11.96L3.67 9.28L3.36 6.04L6.41 4.9L8.11 2.12L11.28 2.85L12 1.75Z" fill="#0A84FF"/>
-               <path d="M8.75 12.25L10.85 14.35L15.4 9.8" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-             </svg>
-           </span>`
-        : '';
-
-      sec.innerHTML = `
-        <div id="avatarTrigger" class="avatar-ring rounded-full mb-3 cursor-pointer select-none transition-transform active:scale-95">
-          <img 
-            src="${escapeHTML(state.profile.avatar)}" 
-            alt="${escapeHTML(state.profile.name)}"
-            onerror="this.src='https://placehold.co/200x200/1e293b/ffffff?text=Avatar'"
-            class="w-[92px] h-[92px] sm:w-24 sm:h-24 rounded-full object-cover block"
-          />
+      const socialsHTML = `
+        <div class="socials ${state.socialLayout === 'list' ? 'list-layout' : ''}">
+          ${state.socials.filter(s => s.visible).map(s => `
+            <a href="${s.url}" target="_blank" rel="noopener" class="social-btn" title="${s.label}">
+              ${ICONS[s.platform] || ICONS.website}
+              <span class="social-label">${s.label}</span>
+            </a>
+          `).join('')}
         </div>
-        ${badgeHtml}
-        <div class="flex items-center justify-center gap-1.5 max-w-full px-2">
-          <h1 class="text-[22px] sm:text-2xl font-bold tracking-tight leading-snug">${escapeHTML(state.profile.name)}</h1>
-          ${verifiedSvg}
-        </div>
-        <p class="text-[13px] sm:text-sm mt-1.5 max-w-[330px] leading-relaxed px-2" style="color: var(--text-muted)">
-          ${escapeHTML(state.profile.bio)}
-        </p>
       `;
 
-      // النقر 5 مرات متتالية على الصورة يفتح لوحة التحكم المخفية
-      const trigger = sec.querySelector('#avatarTrigger');
-      trigger.addEventListener('click', () => {
-        avatarClickCount++;
-        clearTimeout(avatarClickTimer);
-        if (avatarClickCount >= 5) {
-          avatarClickCount = 0;
-          openAdminGate();
-        } else {
-          avatarClickTimer = setTimeout(() => { avatarClickCount = 0; }, 1400);
-        }
-      });
+      const worksHTML = state.works.length ? `
+        <section class="works-section">
+          <div class="section-header">
+            <h2>أعمالي</h2>
+            <div class="slider-controls">
+              <button type="button" class="slider-btn" onclick="scrollWorks(170)">‹</button>
+              <button type="button" class="slider-btn" onclick="scrollWorks(-170)">›</button>
+            </div>
+          </div>
+          <div class="works-track" id="worksTrack">
+            ${state.works.map(w => `
+              <div class="work-slide" onclick="openLightbox('${w.image}')">
+                <img src="${w.image}" alt="${w.title || 'عمل'}">
+                ${w.title ? `<div class="work-caption">${w.title}</div>` : ''}
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      ` : '';
 
-      return sec;
+      document.getElementById('dynamicSections').innerHTML =
+        state.sectionOrder === 'works-first' ? (worksHTML + socialsHTML) : (socialsHTML + worksHTML);
     }
 
-    // قسم أيقونات التواصل الاجتماعي
-    function renderSocialsSection() {
-      const visibleSocials = state.socials.filter(s => s.visible);
-      const sec = document.createElement('section');
-      if (visibleSocials.length === 0) return sec;
+    function scrollWorks(delta) {
+      const track = document.getElementById('worksTrack');
+      if (track) track.scrollBy({ left: delta, behavior: 'smooth' });
+    }
 
-      const style = state.layout.socialStyle;
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
 
-      if (style === 'dock') {
-        sec.className = 'flex justify-center';
-        const dock = document.createElement('div');
-        dock.className = 'apple-glass rounded-[26px] p-2.5 flex flex-wrap items-center justify-center gap-2.5 w-full';
-        
-        visibleSocials.forEach(item => {
-          const a = document.createElement('a');
-          a.href = item.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.title = item.label;
-          a.className = 'w-12 h-12 rounded-2xl apple-glass apple-glass-interactive flex items-center justify-center relative group';
-          a.innerHTML = `
-            ${PLATFORM_ICONS[item.platform] || PLATFORM_ICONS.website}
-            <span class="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity absolute -top-8 px-2 py-0.5 rounded-lg bg-black/80 text-white text-[10px] whitespace-nowrap">
-              ${escapeHTML(item.label)}
-            </span>
-          `;
-          dock.appendChild(a);
-        });
-        sec.appendChild(dock);
+    // Secret Triggers (5 Taps on Avatar, #admin hash, or Ctrl+Shift+L)
+    let tapCount = 0;
+    let tapTimer = null;
+    document.getElementById('avatarTrigger').addEventListener('click', () => {
+      tapCount++;
+      clearTimeout(tapTimer);
+      tapTimer = setTimeout(() => { tapCount = 0; }, 1800);
+      if (tapCount >= 5) {
+        tapCount = 0;
+        triggerAdminAccess();
+      }
+    });
 
-      } else if (style === 'grid') {
-        sec.className = 'grid grid-cols-2 gap-3';
-        visibleSocials.forEach(item => {
-          const a = document.createElement('a');
-          a.href = item.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.className = 'apple-glass apple-glass-interactive rounded-2xl p-3.5 flex items-center gap-3';
-          a.innerHTML = `
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255,255,255,0.12)">
-              ${PLATFORM_ICONS[item.platform] || PLATFORM_ICONS.website}
-            </div>
-            <div class="min-w-0 text-right">
-              <div class="font-semibold text-xs truncate">${escapeHTML(item.label)}</div>
-              <div class="text-[11px] truncate opacity-70" dir="ltr">${escapeHTML(item.handle || '')}</div>
-            </div>
-          `;
-          sec.appendChild(a);
-        });
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'l') {
+        e.preventDefault();
+        triggerAdminAccess();
+      }
+    });
 
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#admin') triggerAdminAccess();
+    });
+
+    function triggerAdminAccess() {
+      if (isAdminAuthenticated) {
+        openAdminPanel();
       } else {
-        // 'pills' البطاقات العريضة
-        sec.className = 'flex flex-col gap-2.5';
-        visibleSocials.forEach(item => {
-          const a = document.createElement('a');
-          a.href = item.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.className = 'apple-glass apple-glass-interactive rounded-2xl px-4 py-3 flex items-center justify-between';
-          a.innerHTML = `
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255,255,255,0.12)">
-                ${PLATFORM_ICONS[item.platform] || PLATFORM_ICONS.website}
-              </div>
-              <div class="text-right min-w-0">
-                <div class="font-semibold text-sm truncate">${escapeHTML(item.label)}</div>
-                ${item.handle ? `<div class="text-xs opacity-70 truncate" dir="ltr">${escapeHTML(item.handle)}</div>` : ''}
-              </div>
-            </div>
-            <svg class="w-4 h-4 opacity-50 shrink-0 rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          `;
-          sec.appendChild(a);
-        });
+        document.getElementById('loginError').style.display = 'none';
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('loginModal').classList.add('open');
+        setTimeout(() => document.getElementById('passwordInput').focus(), 100);
       }
-
-      return sec;
-    }
-
-    // قسم سلايدر أعمالي (صور عمودية متحركة)
-    function renderPortfolioSection() {
-      const visibleSlides = state.portfolio.slides.filter(s => s.visible);
-      const sec = document.createElement('section');
-      if (visibleSlides.length === 0) return sec;
-
-      sec.className = 'apple-glass rounded-[28px] p-4 space-y-3';
-      sec.innerHTML = `
-        <div class="flex items-center justify-between px-1">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full" style="background-color: var(--accent)"></span>
-            <h2 class="font-bold text-sm">${escapeHTML(state.portfolio.title || 'أعمالي')}</h2>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <button type="button" id="slidePrevBtn" aria-label="السابق" class="w-7 h-7 rounded-full apple-glass flex items-center justify-center hover:opacity-80 transition">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-            </button>
-            <button type="button" id="slideNextBtn" aria-label="التالي" class="w-7 h-7 rounded-full apple-glass flex items-center justify-center hover:opacity-80 transition">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            </button>
-          </div>
-        </div>
-        <div id="portfolioTrack" class="portfolio-track"></div>
-      `;
-
-      const track = sec.querySelector('#portfolioTrack');
-      visibleSlides.forEach(slide => {
-        const card = document.createElement('div');
-        card.className = 'portfolio-slide group';
-        card.innerHTML = `
-          <img src="${escapeHTML(slide.image)}" alt="${escapeHTML(slide.title)}" onerror="this.src='https://placehold.co/450x750/1e293b/ffffff?text=Work'" loading="lazy" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent flex flex-col justify-end p-3.5 text-right text-white">
-            <h3 class="font-bold text-xs leading-snug line-clamp-1">${escapeHTML(slide.title)}</h3>
-            ${slide.desc ? `<p class="text-[10px] text-white/75 line-clamp-1 mt-0.5">${escapeHTML(slide.desc)}</p>` : ''}
-          </div>
-        `;
-        card.addEventListener('click', () => openLightbox(slide));
-        track.appendChild(card);
-      });
-
-      // أزرار التنقل اليدوي في السلايدر (RTL)
-      sec.querySelector('#slideNextBtn').addEventListener('click', () => {
-        track.scrollBy({ left: -210, behavior: 'smooth' });
-      });
-      sec.querySelector('#slidePrevBtn').addEventListener('click', () => {
-        track.scrollBy({ left: 210, behavior: 'smooth' });
-      });
-
-      // إيقاف الحركة التلقائية مؤقتاً عند لمس المستخدم للسلايدر
-      track.addEventListener('touchstart', () => clearInterval(autoplayTimer), { passive: true });
-      track.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
-      track.addEventListener('mouseleave', () => setupSliderAutoplay());
-
-      return sec;
-    }
-
-    function setupSliderAutoplay() {
-      clearInterval(autoplayTimer);
-      if (!state.portfolio.autoplay) return;
-
-      autoplayTimer = setInterval(() => {
-        const track = document.getElementById('portfolioTrack');
-        if (!track) return;
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        if (maxScroll <= 0) return;
-
-        // في وضع RTL يكون التمرير لليسار بقيم سالبة في أغلب المتصفحات
-        const current = Math.abs(track.scrollLeft);
-        if (current >= maxScroll - 10) {
-          track.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          track.scrollBy({ left: -210, behavior: 'smooth' });
-        }
-      }, 3400);
-    }
-
-    // نافذة تكبير الصورة
-    function openLightbox(slide) {
-      document.getElementById('lightboxImg').src = slide.image;
-      document.getElementById('lightboxTitle').textContent = slide.title;
-      document.getElementById('lightboxDesc').textContent = slide.desc || '';
-      const modal = document.getElementById('lightboxModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeLightbox() {
-      const modal = document.getElementById('lightboxModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    // =========================================================================
-    // 5. نظام الدخول المخفي للوحة التحكم (Password Protected)
-    // =========================================================================
-    function openAdminGate() {
-      if (sessionStorage.getItem('anas_admin_unlocked') === 'true') {
-        openDashboard();
-        return;
-      }
-      const modal = document.getElementById('loginModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.getElementById('loginError').classList.add('hidden');
-      const input = document.getElementById('adminPasswordInput');
-      input.value = '';
-      setTimeout(() => input.focus(), 100);
     }
 
     function closeLoginModal() {
-      const modal = document.getElementById('loginModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      if (window.location.hash === '#admin') {
-        history.replaceState(null, null, ' ');
-      }
+      document.getElementById('loginModal').classList.remove('open');
     }
 
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const val = document.getElementById('adminPasswordInput').value;
+    function verifyPassword() {
+      const val = document.getElementById('passwordInput').value.trim();
       if (val === ADMIN_PASS) {
-        sessionStorage.setItem('anas_admin_unlocked', 'true');
+        isAdminAuthenticated = true;
         closeLoginModal();
-        openDashboard();
+        document.getElementById('floatingAdminBtn').classList.add('visible');
+        openAdminPanel();
       } else {
-        document.getElementById('loginError').classList.remove('hidden');
+        document.getElementById('loginError').style.display = 'block';
       }
-    });
+    }
 
-    // مراقبة الهاش #admin في الرابط
-    window.addEventListener('hashchange', () => {
+    function openAdminPanel() {
+      populateAdminFields();
+      document.getElementById('adminPanel').classList.add('open');
+    }
+
+    function closeAdminPanel() {
+      document.getElementById('adminPanel').classList.remove('open');
+    }
+
+    function logoutAdmin() {
+      isAdminAuthenticated = false;
+      closeAdminPanel();
+      document.getElementById('floatingAdminBtn').classList.remove('visible');
       if (window.location.hash === '#admin') {
-        openAdminGate();
-      }
-    });
-
-    // مراقبة اختصار لوحة المفاتيح Ctrl + Shift + L
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'L' || e.key === 'l')) {
-        e.preventDefault();
-        openAdminGate();
-      }
-    });
-
-    // =========================================================================
-    // 6. منطق وعناصر لوحة التحكم (Admin Dashboard)
-    // =========================================================================
-    function openDashboard() {
-      syncDashboardInputs();
-      const dash = document.getElementById('adminDashboard');
-      dash.classList.remove('hidden');
-    }
-
-    function closeDashboard() {
-      document.getElementById('adminDashboard').classList.add('hidden');
-      if (window.location.hash === '#admin') {
-        history.replaceState(null, null, ' ');
+        history.replaceState(null, '', window.location.pathname + window.location.search);
       }
     }
 
-    function switchTab(tabName) {
-      document.querySelectorAll('.dash-tab').forEach(btn => {
-        const isTarget = btn.dataset.tab === tabName;
-        btn.classList.toggle('border-blue-500', isTarget);
-        btn.classList.toggle('text-blue-400', isTarget);
-        btn.classList.toggle('border-transparent', !isTarget);
-        btn.classList.toggle('text-zinc-400', !isTarget);
-      });
-
-      document.querySelectorAll('.tab-panel').forEach(panel => {
-        panel.classList.toggle('hidden', panel.id !== `tab-${tabName}`);
-      });
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
     }
 
-    function syncDashboardInputs() {
-      // بيانات البروفايل
-      document.getElementById('dashAvatarPreview').src = state.profile.avatar;
-      document.getElementById('inputAvatarUrl').value = state.profile.avatar;
-      document.getElementById('inputName').value = state.profile.name;
-      document.getElementById('inputBadge').value = state.profile.badge || '';
-      document.getElementById('inputBio').value = state.profile.bio;
-      document.getElementById('toggleVerified').checked = state.profile.verified !== false;
-
-      // الألوان
-      document.getElementById('colorAccent').value = state.theme.accent;
-      document.getElementById('colorBg1').value = state.theme.bg1;
-      document.getElementById('colorBg2').value = state.theme.bg2;
-      document.getElementById('colorBg3').value = state.theme.bg3;
-      document.getElementById('rangeBlur').value = state.theme.blur;
-      document.getElementById('blurValueLabel').textContent = `${state.theme.blur}px`;
-
-      updateGlassModeButtons();
-      renderThemePresets();
-      renderLayoutControls();
-      renderSocialsManager();
-      renderPortfolioManager();
+    function populateAdminFields() {
+      document.getElementById('editAvatar').value = state.avatar;
+      document.getElementById('editName').value = state.name;
+      document.getElementById('editVerified').checked = state.verified;
+      document.getElementById('editBio').value = state.bio;
+      document.getElementById('editSocialLayout').value = state.socialLayout;
+      document.getElementById('editSectionOrder').value = state.sectionOrder;
+      document.getElementById('editAccent').value = state.colors.accent;
+      document.getElementById('editBgStart').value = state.colors.bgStart;
+      document.getElementById('editBgMid').value = state.colors.bgMid;
+      document.getElementById('editBgEnd').value = state.colors.bgEnd;
+      renderSocialsAdmin();
+      renderWorksAdmin();
     }
 
-    // ربط المدخلات الفورية للتعديل المباشر
-    document.getElementById('inputName').addEventListener('input', e => { state.profile.name = e.target.value; saveState(); });
-    document.getElementById('inputBadge').addEventListener('input', e => { state.profile.badge = e.target.value; saveState(); });
-    document.getElementById('inputBio').addEventListener('input', e => { state.profile.bio = e.target.value; saveState(); });
-
-    function toggleVerifiedBadge(checked) {
-      state.profile.verified = checked;
-      saveState();
-    }
-    document.getElementById('inputAvatarUrl').addEventListener('input', e => {
-      state.profile.avatar = e.target.value;
-      document.getElementById('dashAvatarPreview').src = e.target.value;
-      saveState();
-    });
-
-    // رفع وضغط الصورة الشخصية محلياً
-    document.getElementById('inputAvatarFile').addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const dataUrl = await compressImage(file, 360, 0.85);
-      state.profile.avatar = dataUrl;
-      document.getElementById('inputAvatarUrl').value = dataUrl;
-      document.getElementById('dashAvatarPreview').src = dataUrl;
-      saveState();
-      showToast("تم تحديث الصورة الشخصية بنجاح");
-    });
-
-    // الألوان والضبابية
-    ['colorAccent', 'colorBg1', 'colorBg2', 'colorBg3'].forEach(id => {
-      document.getElementById(id).addEventListener('input', e => {
-        const key = id.replace('color', '').toLowerCase();
-        state.theme[key] = e.target.value;
-        saveState();
-      });
-    });
-
-    document.getElementById('rangeBlur').addEventListener('input', e => {
-      state.theme.blur = parseInt(e.target.value, 10);
-      document.getElementById('blurValueLabel').textContent = `${state.theme.blur}px`;
-      saveState();
-    });
-
-    function setGlassMode(mode) {
-      state.theme.mode = mode;
-      updateGlassModeButtons();
-      saveState();
+    function updateLiveState() {
+      state.avatar = document.getElementById('editAvatar').value;
+      state.name = document.getElementById('editName').value;
+      state.verified = document.getElementById('editVerified').checked;
+      state.bio = document.getElementById('editBio').value;
+      state.socialLayout = document.getElementById('editSocialLayout').value;
+      state.sectionOrder = document.getElementById('editSectionOrder').value;
+      state.colors.accent = document.getElementById('editAccent').value;
+      state.colors.bgStart = document.getElementById('editBgStart').value;
+      state.colors.bgMid = document.getElementById('editBgMid').value;
+      state.colors.bgEnd = document.getElementById('editBgEnd').value;
+      renderLanding();
     }
 
-    function updateGlassModeButtons() {
-      const isDark = state.theme.mode === 'dark';
-      const btnDark = document.getElementById('btnGlassDark');
-      const btnLight = document.getElementById('btnGlassLight');
-      btnDark.className = `py-2 rounded-xl text-xs font-medium border transition ${isDark ? 'bg-blue-600/25 border-blue-500 text-blue-300' : 'bg-black/30 border-white/10 text-zinc-400'}`;
-      btnLight.className = `py-2 rounded-xl text-xs font-medium border transition ${!isDark ? 'bg-blue-600/25 border-blue-500 text-blue-300' : 'bg-black/30 border-white/10 text-zinc-400'}`;
-    }
-
-    function renderThemePresets() {
-      const container = document.getElementById('themePresetsContainer');
-      container.innerHTML = '';
-      APPLE_PRESETS.forEach(preset => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'p-2.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/10 flex flex-col items-center gap-2 transition';
-        btn.innerHTML = `
-          <div class="w-full h-7 rounded-lg flex overflow-hidden border border-white/15">
-            <span class="flex-1" style="background:${preset.bg1}"></span>
-            <span class="flex-1" style="background:${preset.bg2}"></span>
-            <span class="flex-1" style="background:${preset.accent}"></span>
+    function renderSocialsAdmin() {
+      const list = document.getElementById('socialsAdminList');
+      list.innerHTML = state.socials.map((s, idx) => `
+        <div class="item-card" style="opacity:${s.visible ? '1' : '0.5'}">
+          <div class="item-info">
+            <strong>${s.label} (${s.platform})</strong>
+            <span>${s.url}</span>
           </div>
-          <span class="text-[11px] font-medium text-zinc-200">${preset.name}</span>
-        `;
-        btn.addEventListener('click', () => {
-          state.theme.mode = preset.mode;
-          state.theme.accent = preset.accent;
-          state.theme.bg1 = preset.bg1;
-          state.theme.bg2 = preset.bg2;
-          state.theme.bg3 = preset.bg3;
-          syncDashboardInputs();
-          saveState();
-          showToast(`تم تطبيق ثيم: ${preset.name}`);
-        });
-        container.appendChild(btn);
-      });
-    }
-
-    // =========================================================================
-    // 7. التحكم في طريقة العرض وترتيب الأقسام
-    // =========================================================================
-    function setSocialDisplayStyle(style) {
-      state.layout.socialStyle = style;
-      renderLayoutControls();
-      saveState();
-    }
-
-    function renderLayoutControls() {
-      // تحديث أزرار نمط عرض الأيقونات
-      document.querySelectorAll('.style-opt').forEach(btn => {
-        const active = btn.dataset.style === state.layout.socialStyle;
-        btn.className = `style-opt p-3.5 rounded-2xl border text-right transition ${
-          active ? 'bg-blue-600/20 border-blue-500 text-white' : 'bg-black/30 border-white/10 text-zinc-400 hover:bg-black/50'
-        }`;
-      });
-
-      // تحديث قائمة ترتيب الأقسام
-      const list = document.getElementById('sectionsOrderList');
-      list.innerHTML = '';
-      const labels = {
-        profile: "الصورة الشخصية والنبذة التعريفية",
-        socials: "أيقونات وحسابات التواصل الاجتماعي",
-        portfolio: "سلايدر معرض أعمالي (الصور العمودية)"
-      };
-
-      state.layout.sectionOrder.forEach((secKey, idx) => {
-        const isVisible = !state.layout.hiddenSections.includes(secKey);
-        const row = document.createElement('div');
-        row.className = 'p-3 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between gap-2';
-        row.innerHTML = `
-          <div class="flex items-center gap-2.5">
-            <span class="w-6 h-6 rounded-lg bg-white/10 text-xs flex items-center justify-center font-bold text-zinc-300">${idx + 1}</span>
-            <span class="text-xs font-medium ${isVisible ? 'text-white' : 'text-zinc-500 line-through'}">${labels[secKey]}</span>
+          <div class="item-actions">
+            <button type="button" class="mini-btn" onclick="moveSocial(${idx}, -1)">↑</button>
+            <button type="button" class="mini-btn" onclick="moveSocial(${idx}, 1)">↓</button>
+            <button type="button" class="mini-btn" onclick="toggleSocial(${idx})">${s.visible ? 'إخفاء' : 'إظهار'}</button>
+            <button type="button" class="mini-btn" onclick="editSocial(${idx})">تعديل</button>
+            <button type="button" class="mini-btn" style="color:#fca5a5;" onclick="deleteSocial(${idx})">حذف</button>
           </div>
-          <div class="flex items-center gap-1.5">
-            <button type="button" onclick="moveSection(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-30 text-xs" title="تحريك للأعلى">▲</button>
-            <button type="button" onclick="moveSection(${idx}, 1)" ${idx === state.layout.sectionOrder.length - 1 ? 'disabled' : ''} class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-30 text-xs" title="تحريك للأسفل">▼</button>
-            <label class="ios-switch mr-1">
-              <input type="checkbox" ${isVisible ? 'checked' : ''} onchange="toggleSectionVisibility('${secKey}', this.checked)" />
-              <span class="ios-slider"></span>
-            </label>
-          </div>
-        `;
-        list.appendChild(row);
-      });
+        </div>
+      `).join('');
     }
 
-    function moveSection(index, dir) {
-      const target = index + dir;
-      if (target < 0 || target >= state.layout.sectionOrder.length) return;
-      const arr = state.layout.sectionOrder;
-      [arr[index], arr[target]] = [arr[target], arr[index]];
-      renderLayoutControls();
-      saveState();
-    }
+    function saveSocialItem() {
+      const idx = parseInt(document.getElementById('socialEditIndex').value, 10);
+      const platform = document.getElementById('socialPlatform').value;
+      let url = document.getElementById('socialUrl').value.trim();
+      const label = document.getElementById('socialLabel').value.trim() || platform;
 
-    function toggleSectionVisibility(secKey, visible) {
-      if (visible) {
-        state.layout.hiddenSections = state.layout.hiddenSections.filter(k => k !== secKey);
-      } else if (!state.layout.hiddenSections.includes(secKey)) {
-        state.layout.hiddenSections.push(secKey);
+      if (!url) return;
+      if (platform === 'whatsapp' && !url.startsWith('http')) {
+        const digits = url.replace(/\D/g, '');
+        url = 'https://wa.me/' + digits;
       }
-      renderLayoutControls();
-      saveState();
-    }
 
-    // =========================================================================
-    // 8. إدارة الحسابات الاجتماعية (إضافة / تعديل / إخفاء / ترتيب)
-    // =========================================================================
-    function formatSocialUrl(platform, rawInput) {
-      const val = rawInput.trim();
-      if (!val) return '';
-      if (platform === 'whatsapp' && !val.startsWith('http')) {
-        const digits = val.replace(/[^\d]/g, '');
-        if (digits) return `https://wa.me/${digits}`;
-      }
-      return val.startsWith('http') ? val : `https://${val}`;
-    }
-
-    function onNewPlatformChange(platform) {
-      const urlInput = document.getElementById('newSocialUrl');
-      if (platform === 'whatsapp') {
-        urlInput.placeholder = 'أدخل رقم الواتساب بالرمز الدولي (مثال: 966500000000) أو رابط wa.me';
+      if (idx >= 0) {
+        state.socials[idx] = { ...state.socials[idx], platform, url, label };
+        document.getElementById('socialEditIndex').value = '-1';
       } else {
-        urlInput.placeholder = 'رابط الحساب الكامل https://...';
-      }
-    }
-
-    function addSocialAccount() {
-      const platform = document.getElementById('newSocialPlatform').value;
-      const labelInput = document.getElementById('newSocialLabel').value.trim();
-      const handle = document.getElementById('newSocialHandle').value.trim();
-      const rawUrl = document.getElementById('newSocialUrl').value.trim();
-
-      if (!rawUrl) {
-        showToast("يرجى إدخال الرابط أو رقم الواتساب أولاً");
-        return;
+        state.socials.push({ platform, url, label, visible: true });
       }
 
-      const defaultLabels = {
-        instagram: "انستجرام", tiktok: "تيك توك", snapchat: "سناب شات",
-        facebook: "فيسبوك", behance: "بيهانس", x: "منصة X",
-        youtube: "يوتيوب", whatsapp: "واتساب", linkedin: "لينكد إن", website: "موقعي"
-      };
-
-      state.socials.push({
-        id: 's_' + Date.now(),
-        platform,
-        label: labelInput || defaultLabels[platform] || "حساب",
-        handle,
-        url: formatSocialUrl(platform, rawUrl),
-        visible: true
-      });
-
-      document.getElementById('newSocialLabel').value = '';
-      document.getElementById('newSocialHandle').value = '';
-      document.getElementById('newSocialUrl').value = '';
-
-      renderSocialsManager();
-      saveState();
-      showToast("تمت إضافة الحساب بنجاح");
+      document.getElementById('socialUrl').value = '';
+      document.getElementById('socialLabel').value = '';
+      renderSocialsAdmin();
+      renderLanding();
     }
 
-    function renderSocialsManager() {
-      const list = document.getElementById('socialsManageList');
-      list.innerHTML = '';
-
-      state.socials.forEach((item, idx) => {
-        const card = document.createElement('div');
-        card.className = 'p-3.5 rounded-2xl bg-black/40 border border-white/10 space-y-2.5';
-        const urlPlaceholder = item.platform === 'whatsapp' ? 'رقم الواتساب أو رابط wa.me' : 'الرابط';
-        card.innerHTML = `
-          <div class="flex items-center justify-between gap-2">
-            <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-zinc-200">
-                ${PLATFORM_ICONS[item.platform] || PLATFORM_ICONS.website}
-              </div>
-              <span class="font-bold text-xs text-white">${escapeHTML(item.label)}</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <button type="button" onclick="moveSocial(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-30 text-[11px]">▲</button>
-              <button type="button" onclick="moveSocial(${idx}, 1)" ${idx === state.socials.length - 1 ? 'disabled' : ''} class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 disabled:opacity-30 text-[11px]">▼</button>
-              <label class="ios-switch mx-1" title="إظهار / إخفاء">
-                <input type="checkbox" ${item.visible ? 'checked' : ''} onchange="toggleSocialVisible(${idx}, this.checked)" />
-                <span class="ios-slider"></span>
-              </label>
-              <button type="button" onclick="deleteSocial(${idx})" class="p-1.5 rounded-lg bg-red-500/15 hover:bg-red-500/30 text-red-400 text-xs" title="حذف">✕</button>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <input type="text" value="${escapeHTML(item.label)}" onchange="updateSocialField(${idx}, 'label', this.value)" placeholder="الاسم" class="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white" />
-            <input type="text" value="${escapeHTML(item.handle || '')}" onchange="updateSocialField(${idx}, 'handle', this.value)" placeholder="اسم المستخدم" class="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white" />
-            <input type="text" value="${escapeHTML(item.url)}" onchange="updateSocialField(${idx}, 'url', this.value)" placeholder="${urlPlaceholder}" dir="ltr" class="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white" />
-          </div>
-        `;
-        list.appendChild(card);
-      });
+    function editSocial(idx) {
+      const s = state.socials[idx];
+      document.getElementById('socialEditIndex').value = idx;
+      document.getElementById('socialPlatform').value = s.platform;
+      document.getElementById('socialUrl').value = s.url;
+      document.getElementById('socialLabel').value = s.label;
     }
 
-    function updateSocialField(idx, field, val) {
-      if (field === 'url') {
-        state.socials[idx].url = formatSocialUrl(state.socials[idx].platform, val);
-        renderSocialsManager();
-      } else {
-        state.socials[idx][field] = val;
-      }
-      saveState();
-    }
-
-    function toggleSocialVisible(idx, checked) {
-      state.socials[idx].visible = checked;
-      saveState();
+    function toggleSocial(idx) {
+      state.socials[idx].visible = !state.socials[idx].visible;
+      renderSocialsAdmin();
+      renderLanding();
     }
 
     function moveSocial(idx, dir) {
       const target = idx + dir;
       if (target < 0 || target >= state.socials.length) return;
       [state.socials[idx], state.socials[target]] = [state.socials[target], state.socials[idx]];
-      renderSocialsManager();
-      saveState();
+      renderSocialsAdmin();
+      renderLanding();
     }
 
     function deleteSocial(idx) {
       state.socials.splice(idx, 1);
-      renderSocialsManager();
-      saveState();
-      showToast("تم حذف الحساب");
+      renderSocialsAdmin();
+      renderLanding();
     }
 
-    // =========================================================================
-    // 9. إدارة معرض أعمالي (Portfolio Slides)
-    // =========================================================================
-    let pendingUploadedSlideDataUrl = null;
-
-    document.getElementById('newSlideFile').addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      pendingUploadedSlideDataUrl = await compressImage(file, 720, 0.82);
-      document.getElementById('newSlideUrl').value = "تم اختيار صورة من الجهاز ✓";
-      showToast("تم تجهيز الصورة، اضغط على (+ إضافة للسلايدر)");
-    });
-
-    function addPortfolioSlide() {
-      const title = document.getElementById('newSlideTitle').value.trim() || "عمل إبداعي";
-      const desc = document.getElementById('newSlideDesc').value.trim();
-      const urlInput = document.getElementById('newSlideUrl').value.trim();
-      const finalImg = pendingUploadedSlideDataUrl || urlInput;
-
-      if (!finalImg || finalImg === "تم اختيار صورة من الجهاز ✓") {
-        showToast("يرجى وضع رابط صورة أو اختيار صورة من جهازك");
-        return;
-      }
-
-      state.portfolio.slides.unshift({
-        id: 'p_' + Date.now(),
-        title,
-        desc,
-        image: finalImg,
-        visible: true
-      });
-
-      pendingUploadedSlideDataUrl = null;
-      document.getElementById('newSlideTitle').value = '';
-      document.getElementById('newSlideDesc').value = '';
-      document.getElementById('newSlideUrl').value = '';
-      document.getElementById('newSlideFile').value = '';
-
-      renderPortfolioManager();
-      saveState();
-      showToast("تمت إضافة العمل إلى السلايدر");
-    }
-
-    function renderPortfolioManager() {
-      document.getElementById('toggleAutoplay').checked = state.portfolio.autoplay;
-      const list = document.getElementById('portfolioManageList');
-      list.innerHTML = '';
-
-      state.portfolio.slides.forEach((slide, idx) => {
-        const card = document.createElement('div');
-        card.className = 'p-3 rounded-2xl bg-black/40 border border-white/10 flex items-center gap-3';
-        card.innerHTML = `
-          <img src="${escapeHTML(slide.image)}" alt="" class="w-12 h-20 rounded-xl object-cover border border-white/15 shrink-0" />
-          <div class="flex-1 min-w-0 space-y-1.5">
-            <input type="text" value="${escapeHTML(slide.title)}" onchange="updateSlideField(${idx}, 'title', this.value)" class="w-full px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-white" />
-            <input type="text" value="${escapeHTML(slide.desc || '')}" onchange="updateSlideField(${idx}, 'desc', this.value)" placeholder="وصف العمل" class="w-full px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] text-zinc-300" />
+    function renderWorksAdmin() {
+      const list = document.getElementById('worksAdminList');
+      list.innerHTML = state.works.map((w, idx) => `
+        <div class="item-card">
+          <img src="${w.image}" style="width:42px; height:60px; object-fit:cover; border-radius:8px;">
+          <div class="item-info">
+            <strong>${w.title || 'بدون عنوان'}</strong>
+            <span>${w.image}</span>
           </div>
-          <div class="flex flex-col items-center gap-1.5 shrink-0">
-            <div class="flex gap-1">
-              <button type="button" onclick="moveSlide(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="p-1 rounded bg-white/10 hover:bg-white/20 disabled:opacity-30 text-[10px]">▲</button>
-              <button type="button" onclick="moveSlide(${idx}, 1)" ${idx === state.portfolio.slides.length - 1 ? 'disabled' : ''} class="p-1 rounded bg-white/10 hover:bg-white/20 disabled:opacity-30 text-[10px]">▼</button>
-            </div>
-            <div class="flex items-center gap-1">
-              <label class="ios-switch scale-75">
-                <input type="checkbox" ${slide.visible ? 'checked' : ''} onchange="toggleSlideVisible(${idx}, this.checked)" />
-                <span class="ios-slider"></span>
-              </label>
-              <button type="button" onclick="deleteSlide(${idx})" class="p-1 rounded bg-red-500/20 hover:bg-red-500/35 text-red-400 text-xs">✕</button>
-            </div>
+          <div class="item-actions">
+            <button type="button" class="mini-btn" onclick="moveWork(${idx}, -1)">↑</button>
+            <button type="button" class="mini-btn" onclick="moveWork(${idx}, 1)">↓</button>
+            <button type="button" class="mini-btn" style="color:#fca5a5;" onclick="deleteWork(${idx})">حذف</button>
           </div>
-        `;
-        list.appendChild(card);
-      });
+        </div>
+      `).join('');
     }
 
-    function updateSlideField(idx, field, val) {
-      state.portfolio.slides[idx][field] = val;
-      saveState();
+    function addWorkItem() {
+      const image = document.getElementById('workImgUrl').value.trim();
+      const title = document.getElementById('workTitle').value.trim();
+      if (!image) return;
+      state.works.push({ image, title });
+      document.getElementById('workImgUrl').value = '';
+      document.getElementById('workTitle').value = '';
+      renderWorksAdmin();
+      renderLanding();
     }
 
-    function toggleSlideVisible(idx, checked) {
-      state.portfolio.slides[idx].visible = checked;
-      saveState();
-    }
-
-    function moveSlide(idx, dir) {
+    function moveWork(idx, dir) {
       const target = idx + dir;
-      if (target < 0 || target >= state.portfolio.slides.length) return;
-      [state.portfolio.slides[idx], state.portfolio.slides[target]] = [state.portfolio.slides[target], state.portfolio.slides[idx]];
-      renderPortfolioManager();
-      saveState();
+      if (target < 0 || target >= state.works.length) return;
+      [state.works[idx], state.works[target]] = [state.works[target], state.works[idx]];
+      renderWorksAdmin();
+      renderLanding();
     }
 
-    function deleteSlide(idx) {
-      state.portfolio.slides.splice(idx, 1);
-      renderPortfolioManager();
-      saveState();
-      showToast("تم حذف العمل");
+    function deleteWork(idx) {
+      state.works.splice(idx, 1);
+      renderWorksAdmin();
+      renderLanding();
     }
 
-    function toggleSliderAutoplay(checked) {
-      state.portfolio.autoplay = checked;
-      saveState();
+    function generateCleanHTML() {
+      const clone = document.documentElement.cloneNode(true);
+      clone.querySelector('#app-state').textContent = '\n  ' + JSON.stringify(state, null, 2) + '\n  ';
+      clone.querySelector('#adminPanel').classList.remove('open');
+      clone.querySelector('#loginModal').classList.remove('open');
+      clone.querySelector('#lightbox').classList.remove('open');
+      clone.querySelector('#floatingAdminBtn').classList.remove('visible');
+      clone.querySelector('#dynamicSections').innerHTML = '';
+      return '<!DOCTYPE html>\n' + clone.outerHTML;
     }
 
-    // =========================================================================
-    // 10. تصدير الملف النهائي الجاهز للرفع على GitHub Pages
-    // =========================================================================
-    function exportStandaloneHTML() {
-      // استنساخ الكود الحالي للصفحة وحقن الإعدادات الجديدة داخل DEFAULT_CONFIG
-      const currentHTML = document.documentElement.outerHTML;
-      const serializedConfig = JSON.stringify(state, null, 2);
-      const updatedHTML = "<!DOCTYPE html>\n" + currentHTML.replace(
-        /\/\*__CONFIG_START__\*\/[\s\S]*?\/\*__CONFIG_END__\*\//,
-        `/*__CONFIG_START__*/${serializedConfig}/*__CONFIG_END__*/`
-      );
-
-      const blob = new Blob([updatedHTML], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
+    function downloadUpdatedHTML() {
+      const blob = new Blob([generateCleanHTML()], { type: 'text/html;charset=utf-8' });
       const a = document.createElement('a');
-      a.href = url;
+      a.href = URL.createObjectURL(blob);
       a.download = 'index.html';
-      document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      showToast("تم تحميل ملف index.html النهائي بنجاح! ارفعه الآن على GitHub.");
     }
 
-    function resetToDefaults() {
-      localStorage.removeItem(STORAGE_KEY);
-      state = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
-      syncDashboardInputs();
-      applyThemeVariables();
-      renderPublicPage();
-      showToast("تمت استعادة الإعدادات الافتراضية");
-    }
-
-    // =========================================================================
-    // 11. أدوات مساعدة (ضغط الصور، الحماية، الإشعارات)
-    // =========================================================================
-    function compressImage(file, maxWidth, quality) {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          const img = new Image();
-          img.onload = () => {
-            const canvas = document.createElement('canvas');
-            let width = img.width;
-            let height = img.height;
-            if (width > maxWidth) {
-              height = Math.round((height * maxWidth) / width);
-              width = maxWidth;
-            }
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-            resolve(canvas.toDataURL('image/jpeg', quality));
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
+    function copyUpdatedHTML() {
+      navigator.clipboard.writeText(generateCleanHTML()).then(() => {
+        alert('تم نسخ كود HTML المُحدّث بنجاح! الصقه الآن في ملف index.html على GitHub.');
       });
     }
 
-    function escapeHTML(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+    // Initial Render
+    renderLanding();
+    if (window.location.hash === '#admin') {
+      triggerAdminAccess();
     }
-
-    function showToast(msg) {
-      const container = document.getElementById('toastContainer');
-      const el = document.createElement('div');
-      el.className = 'toast-enter px-4 py-2.5 rounded-2xl bg-zinc-900/95 border border-white/15 text-white text-xs font-medium shadow-2xl backdrop-blur-md text-center max-w-[90vw]';
-      el.textContent = msg;
-      container.innerHTML = '';
-      container.appendChild(el);
-      setTimeout(() => {
-        if (container.contains(el)) el.remove();
-      }, 3600);
-    }
-
-    // التشغيل عند تحميل الصفحة
-    window.addEventListener('DOMContentLoaded', () => {
-      applyThemeVariables();
-      renderPublicPage();
-      if (window.location.hash === '#admin') {
-        openAdminGate();
-      }
-    });
   </script>
 </body>
 </html>
